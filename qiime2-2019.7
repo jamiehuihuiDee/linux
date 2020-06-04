@@ -37,6 +37,17 @@ qiime dada2 denoise-paired \
   --o-representative-sequences rep-seqs.qza \
   --o-denoising-stats stats.qza \
   --p-n-threads 16  
+  
+#### different batch run after dada2, could be merge together for the next part of classifier, but could not with the same sample id
+qiime feature-table merge \
+  --i-tables table-1.qza \
+  --i-tables table-2.qza \
+  --o-merged-table table.qza
+  
+qiime feature-table merge-seqs \
+  --i-data rep-seqs-1.qza \
+  --i-data rep-seqs-2.qza \
+  --o-merged-data rep-seqs.qza
 
 # 标注
 qiime feature-classifier classify-sklearn \
