@@ -24,7 +24,7 @@ qiime cutadapt trim-paired \
   --p-discard-untrimmed   \
   --o-trimmed-sequences trim_primer.qza 
  
-
+### if dada2 give out less than 20% reads, --p-min-fold-parent-over-abundance 8 could be enlarge to more than the default 1, 
 qiime dada2 denoise-paired \
   --i-demultiplexed-seqs trim_primer.qza \
   --p-trim-left-f 0 \
