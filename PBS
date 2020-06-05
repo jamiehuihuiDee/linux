@@ -20,7 +20,8 @@ nodes=N:ppn=M ：请求N 个结点，每个结点M 个处理器。
 -W additional_attributes ： 作业的其它属性。
 
 #### qstat for getting info of tasks
-#### qsub **.sh
+#### qsub **.sh  for submiting mask
+#### qnodes  for getting info of each nodes' running 
 
 for example
 
