@@ -1,0 +1,51 @@
+2、PBS 脚本文件
+PBS 脚本文件由脚本选项和运行脚本两部分组成。
+
+-e path ：将标准错误信息重定向到path
+-j join ：将标准输出信息与标准错误信息合并到一个文件join 中去。
+
+-l resource_list ： 定义资源列表。以下为几个常用的资源种类。
+cput=N ： 请求N 秒的CPU 时间; N 也可以是hh:mm:ss 的形式。
+mem=N[K|M|G][B|W]：请求N {kilo|mega|giga}{bytes|words} 大小的内存。
+nodes=N:ppn=M ：请求N 个结点，每个结点M 个处理器。
+-m mail_options ：mail_option 为a：作业abort 时给用户发信；为b：作业开始运行发信；为e：
+作业结束运行时发信。若无此选项，默认为a。
+-M user_list ： 定义有关此作业的mail 发给哪些用户。
+-N name ： 作业名，限15 个字符，首字符为字母，无空格。
+-o path ： 重定向标准输出到path。
+-p priority ： 任务优先级，整数，[-1024，1023]，若无定义则为0.
+-q destination ： destination 有三种形式： queue , @server,queue@server。
+-S shell ： 指明执行运行脚本所用的shell，须包含全路径。t
+-V ： 表明qsub 命令的所有环境变量都export 到此作业。
+-W additional_attributes ： 作业的其它属性。
+
+
+for example
+
+#PBS -N jamie
+#PBS -l nodes=1:ppn=6
+### this will work out the file in the workdir
+cd $PBS_O_WORKDIR
+
+#mpirun -np 18  ./a.out > acpimpilog.out
+#mpirun -np 36  ./a.out > acpimpilog.out
+#mpirun -np 72  ./a.out > acpimpilog.out
+#mpirun -np 108 ./a.out > acpimpilog.out
+#mpirun -np 36 ./a.out > acpimpilog.out
+#mpirun  -H node3       ./a.out > acpimpilog.out
+#mpirun -mca btl_openib_allow_ib true -H node1,node2  ./a.out > acpimpilog.out
+
+### write in working time to take note
+echo begin time is `date` | tee -a  test.log
+
+
+source /home/jhtang/miniconda3/bin/activate your_envactivate qiime2-2019.7
+
+qiime feature-classifier classify-sklearn \
+  --i-classifier /home/jhtang/mytest/silva/full/classifier_taxonomy_slv_138_all_338_806.qza \
+  --i-reads /home/jhtang/mytest/wangying/16S/all_batch/rep-seqs.qza \
+  --o-classification taxonomy_100.qza 
+
+
+echo end time is `date` | tee -a  test.log
+
