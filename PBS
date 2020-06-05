@@ -42,7 +42,7 @@ cd $PBS_O_WORKDIR
 echo begin time is `date` | tee -a  test.log
 
 
-source /home/jhtang/miniconda3/bin/activate your_envactivate qiime2-2019.7
+source /home/jhtang/miniconda3/bin/activate qiime2-2019.7
 
 qiime feature-classifier classify-sklearn \
   --i-classifier /home/jhtang/mytest/silva/full/classifier_taxonomy_slv_138_all_338_806.qza \
