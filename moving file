@@ -1,4 +1,4 @@
-`跨服务器传递数据`
+# 跨服务器传递数据 
 scp <source> <destination>
 To copy a file from B to A while logged into B:
 scp /path/to/file username@a:/path/to/destination
