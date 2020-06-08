@@ -1,15 +1,10 @@
 # 跨服务器传递数据 
 scp <source> <destination>
-
 To copy a file from B to A while logged into B:
-
 scp /path/to/file username@a:/path/to/destination
 
-
 To copy a directory:
-
 scp -r username@example.com:/remote/path/to/directory  /local/path
-
 scp -r /local/directory/path username@example:/remote/directory/path
 
 
