@@ -3,4 +3,4 @@
 - install CPAN # to update cpan
 ##### install modules
 - install File::Basename Getopt::Long List::Util Parallel::ForkManager Pod::Usage 
-- m   
+- m   # get the install modules of the cpan
