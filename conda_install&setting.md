@@ -17,7 +17,7 @@ cat ~/.condarc
 
 
 
-++ it's better to install software under different environment of conda. And conda could install the dependencies. Sometimes the website is in poor connection which may interupt the installation
+- it's better to install software under different environment of conda. And conda could install the dependencies. Sometimes the website is in poor connection which may interupt the installation
 
 # conda new environment
 conda create -n picrust2 -c bioconda -c conda-forge picrust2=2.2.0_b
