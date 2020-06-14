@@ -2,6 +2,7 @@
 minconda3 安装
 https://docs.conda.io/en/latest/miniconda.html
 bash Miniconda3-latest-Linux-x86_64.sh
++ conda update conda ## to updata conda 
 
 ## some setting of the conda
 + change the channels , remove "the default"  line
