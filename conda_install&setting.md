@@ -6,14 +6,17 @@ bash Miniconda3-latest-Linux-x86_64.sh
 
 ## some setting of the conda
 + change the channels , remove "the default"  line
+
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 conda config --set show_channel_urls yes
 + some connections take a long time, you might wish to prolong the waiting time
+
 conda config --set remote_connect_timeout_secs 40
 conda config --set remote_read_timeout_secs 100
 + see what have changed in the settings
+
 cat ~/.condarc
 
 
