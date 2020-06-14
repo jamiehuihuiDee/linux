@@ -1,6 +1,6 @@
 ## cpan for perl install modules
 - cpan  # get into the cpan envs
-- install CPAN # to update cpan
+- install CPAN # to update cpan in a specified envs, like humann2
 - path ./miniconda3/lib/site_perl/ 
 
 
