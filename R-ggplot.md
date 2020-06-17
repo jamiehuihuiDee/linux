@@ -43,7 +43,11 @@ geom_bar()
 ```{r}
  theme_bw() + theme(panel.grid = element_blank(), legend.text = element_text(size = 12)) 
 ```
-
+#### facet 分面
+- 固定scale,nrow设置分面行数，scale=“free”用于自由调整scale
+```
+facet_wrap(~p1$data$treatment,scale="fix",nrow=2)
+```
 
 #### color  
 - 颜色设定最好通过scale_fill_manual 等，可以灵活的调节颜色参数
@@ -52,3 +56,25 @@ geom_bar()
 scale_colour_manual
 scale_fill_manual 
 
+
+#### save figure
+```
+ggsave('pcoa_all.png', p, width = 6, height = 5)
+```
+
+### variable ploting 
+#### 条形图
+- x轴需要是factor或者数字
+- 条形堆叠，堆叠顺序与factor有关,可以调整factor改变位置
+```{r}
+ggplot(rawdata[1:10,],aes(x=Country,y=Recs)) +
+  geom_bar(stat= "identity",fill = rainbow(10),colour = "white") 
+```
+- 条形分列
+```
+ggplot(same_melt,aes(x=gene_name,weight=value,fill=variable)) +
+  geom_bar(position =  "dodge")
+```
+
+#### 折线图
+- 数据排好序，按照x轴排序
