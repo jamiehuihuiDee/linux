@@ -41,13 +41,21 @@ geom_bar()
 
 #### 画布格子清除
 ```{r}
- theme_bw() + theme(panel.grid = element_blank(), legend.text = element_text(size = 12)) 
+ theme_bw() 
+```
+#### text
+- theme 里面设置不同位置的参数，通过element_text指定
+```    
+theme(panel.grid = element_blank(), 
+        legend.text = element_text(size = 20),legend.title = element_text(size=20),# for legend
+               axis.text=element_text(size=20),axis.title = element_text(size=20)) # for axis and its title
 ```
 #### facet 分面
 - 固定scale,nrow设置分面行数，scale=“free”用于自由调整scale
 ```
 facet_wrap(~p1$data$treatment,scale="fix",nrow=2)
 ```
+
 
 #### color  
 - 颜色设定最好通过scale_fill_manual 等，可以灵活的调节颜色参数
