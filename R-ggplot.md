@@ -64,6 +64,16 @@ facet_wrap(~p1$data$treatment,scale="fix",nrow=2)
 ```{r}
 scale_colour_manual
 scale_fill_manual 
+```
+#### ggplot对象生成后额外添加修改，字体等需要重新定义
+```
+line_plot2(tax_melt = dis_melt,group = "donor2acceptor",time="variable",mad=FALSE,
+           scale_color = c("red","blue","green","brown"))+
+  labs(y="distance to baseline(%)",title="FMT+DSS-- distance to DSS day0")+ ## change the labs and the theme needed to change as well
+  theme(panel.grid = element_blank(),
+        legend.text = element_text(size = 20),legend.title = element_text(size=20),
+        axis.text=element_text(size=20),axis.title = element_text(size=20))
+```
 
 
 #### save figure
