@@ -42,6 +42,7 @@ geom_bar()
 #### 画布格子清除
 ```{r}
  theme_bw() 
+ theme_minimal() ### no backgroup
 ```
 #### text
 - theme 里面设置不同位置的参数，通过element_text指定
