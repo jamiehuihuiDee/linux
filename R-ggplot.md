@@ -39,10 +39,12 @@ geom_bar()
 #### aes shape
 + 对应的数据需要是factor，提前转换好
 
-#### 画布格子清除
+#### 画布格子清除，保留坐标轴黑线
 ```{r}
- theme_bw() 
- theme_minimal() ### no backgroup
+   theme( panel.grid.minor = element_blank(),
+             panel.background = element_blank(),panel.border = element_blank(),axis.line = element_line(colour = "black"),
+             panel.grid.major=element_line(colour=NA),axis.text.x=element_text(angle=0,hjust=0.5,size = 8))
+
 ```
 #### text
 - theme 里面设置不同位置的参数，通过element_text指定
