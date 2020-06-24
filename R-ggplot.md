@@ -61,11 +61,14 @@ facet_wrap(~p1$data$treatment,scale="fix",nrow=2)
 
 
 #### color  
-- 颜色设定最好通过scale_fill_manual 等，可以灵活的调节颜色参数
-- fill用于填充颜色,barplot，colour用于边框颜色line , point
+- 颜色设定最好通过scale_fill_manual 等，可以灵活的调节颜色参数，颜色在value 中设置的时候保证输入的为字符串，不能是factor
+- fill用于填充颜色,barplot，colour用于边框颜色line , point，对于shape，只用空心的才能填充fill，实心的只能用colour，它全部都是边框的意思
 ```{r}
+scale_colour_manual(values = scale_color)
 scale_colour_manual
 scale_fill_manual 
+
+geom_point(aes(fill =sub_data_ord[,  color],size=sub_data_ord[,size]),color="black",shape =  21) ## color for boarder
 ```
 #### ggplot对象生成后额外添加修改，字体等需要重新定义
 ```
