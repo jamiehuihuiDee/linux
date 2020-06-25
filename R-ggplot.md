@@ -111,4 +111,8 @@ geom_path(aes(x=pc1_mean,y=pc2_mean,group=data_all[,shape])) # geom_path或者ge
 ```{r}
   geom_segment(aes(x = -.5, y = -.25, xend = 0, yend = 0),
                arrow = arrow(length = unit(0.5, "cm")),arrow.fill = "red",size=2,color="red")
+               
+  geom_curve  ## 有一定弧度
+  geom_curve(aes(x = -.2, y = -.25, xend = 0, yend = 0),curvature =2,angle = 150,ncp = 8,
+                           arrow = arrow(length = unit(0.5, "cm")),arrow.fill = "red",size=2,color="red")
 ```
