@@ -102,3 +102,13 @@ ggplot(same_melt,aes(x=gene_name,weight=value,fill=variable)) +
 
 #### 折线图
 - 数据排好序，按照x轴排序
+```{r}
+data_all = data_all[order(data_all[,color]),]  ## 按照时间顺序等排序
+
+geom_path(aes(x=pc1_mean,y=pc2_mean,group=data_all[,shape])) # geom_path或者geom_line 都可以
+```
+- 最后可以额外加上箭头,输入具体位置
+```{r}
+  geom_segment(aes(x = -.5, y = -.25, xend = 0, yend = 0),
+               arrow = arrow(length = unit(0.5, "cm")),arrow.fill = "red",size=2,color="red")
+```
