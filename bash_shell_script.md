@@ -13,6 +13,8 @@ first=`echo ${array[0]}`
 second=`echo ${array[1]}`
 third=`echo ${array[2]}`
 
+echo running file $prefix
+
 rgi bwt --read_one $second \
 --read_two $third \
 --aligner bowtie2 --output_file $array \
@@ -20,6 +22,7 @@ rgi bwt --read_one $second \
 
 rm *.temp.*
 rm *.bam*
+
 
 else
 count=$((count+1))
@@ -37,4 +40,8 @@ echo end time is `date`
 ```
 cat manifest.txt | awk 'NR > 1'
 echo $i
+```
+- echo string with only $, or it will work out to be command
+```
+echo $prefix
 ```
