@@ -2,7 +2,10 @@
 ```{r}
 ggplot(data,aes(x=x,y=y)) +
 geom_bar()
+
+aes 设置参考vignette("ggplot2-specs")
 ```
+
 
 ### aes
 + if the aes setting in the ggplot, 全局设定，以后的图层都将基于该设定，在x轴，y轴用不同的数据
