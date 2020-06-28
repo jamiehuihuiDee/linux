@@ -29,11 +29,16 @@ count=$((count+1))
 fi
 done
 ```
-- time take note
+### time take note
 ```
 echo begin time is `date` 
 echo end time is `date` 
 ```
+- in parallel, add joblog in the front is OK
+```
+"parallel --joblog jobs.txt -j %s 'humann2 --threads %s --input {} --output humann2_out/{/.}' ::: cat_reads/*fastq"
+```
+
 
 
 - skip the first line
