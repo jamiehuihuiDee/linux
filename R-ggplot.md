@@ -63,6 +63,7 @@ facet_wrap(~p1$data$treatment,scale="fix",nrow=2)
 #### color  
 - 颜色设定最好通过scale_fill_manual 等，可以灵活的调节颜色参数，颜色在value 中设置的时候保证输入的为字符串，不能是factor
 - fill用于填充颜色,barplot，colour用于边框颜色line , point，对于shape，只用空心的才能填充fill，实心的只能用colour，它全部都是边框的意思
+
 ```{r}
 scale_colour_manual(values = scale_color)
 scale_colour_manual
@@ -70,6 +71,20 @@ scale_fill_manual
 
 geom_point(aes(fill =sub_data_ord[,  color],size=sub_data_ord[,size]),color="black",shape =  21) ## color for boarder
 ```
+- scale 只能设置一次，所以如果多个图层使用不同的颜色需要用不同形状，对应不同scale，空心的用fill调整gradient颜色，实心的用color调整,shape=16 为实心
+```{r}
+    ggplot(sub_data_ord, aes( pc1, pc2)) +
+      geom_point(data=sub_data_ord[sub_data_ord[,color]=="Y2",],
+                 aes(fill =sub_data_ord[sub_data_ord[,color]=="Y2",size],
+                     size=sub_data_ord[sub_data_ord[,color]=="Y2",size]),color="black",shape=21) +
+      scale_size_continuous(range=c(5,12))+
+      scale_fill_gradient(low=hsv(1,.1,.7),high=hsv(1,1,1))+
+      geom_point(data=sub_data_ord[sub_data_ord[,color]=="O2",],
+                 aes(color =sub_data_ord[sub_data_ord[,color]=="O2",size],
+                     size=sub_data_ord[sub_data_ord[,color]=="O2",size]),shape=16) +
+      scale_color_gradient(low=hsv(.5,.1,.7),high=hsv(.5,1,1))
+```
+
 #### ggplot对象生成后额外添加修改，字体等需要重新定义
 ```
 line_plot2(tax_melt = dis_melt,group = "donor2acceptor",time="variable",mad=FALSE,
@@ -116,3 +131,11 @@ geom_path(aes(x=pc1_mean,y=pc2_mean,group=data_all[,shape])) # geom_path或者ge
   geom_curve(aes(x = -.2, y = -.25, xend = 0, yend = 0),curvature =2,angle = 150,ncp = 8,
                            arrow = arrow(length = unit(0.5, "cm")),arrow.fill = "red",size=2,color="red")
 ```
+
+##### 散点图
+- 同一位置稍微抖动position
+```{r}
+ggplot(meta1,aes(x=timeFMT,y=observed,group=donor2acceptor))+
+  geom_point(aes(color=donor2acceptor),size=2,position = position_dodge2(width = 0.2))
+  ```
+
