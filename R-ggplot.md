@@ -54,7 +54,8 @@ aes 设置参考vignette("ggplot2-specs")
 ```    
 theme(panel.grid = element_blank(), 
         legend.text = element_text(size = 20),legend.title = element_text(size=20),# for legend
-               axis.text=element_text(size=20),axis.title = element_text(size=20)) # for axis and its title
+               axis.text=element_text(size=20),axis.title = element_text(size=20), # for axis and its title
+               strip.text=element_text(size=20))   # for facet label
 ```
 #### facet 分面
 - 固定scale,nrow设置分面行数，scale=“free”用于自由调整scale
@@ -87,6 +88,18 @@ geom_point(aes(fill =sub_data_ord[,  color],size=sub_data_ord[,size]),color="bla
                      size=sub_data_ord[sub_data_ord[,color]=="O2",size]),shape=16) +
       scale_color_gradient(low=hsv(.5,.1,.7),high=hsv(.5,1,1))
 ```
+#### size
+- size 都是数值型，一般设定的range根据数值型的范围进行调整,range(5,9)按照距离分配在-25，0，7三个数值之间，用gif作图比较方便
+```{r}
+pcoa_plot_size(data_ord,pcoa,metric=metric,title_name = "day -25 to day 7 ",size="timeDSS",
+               var1 = "timeDSS",var1_sub = c(-25,0,7),
+               color = "donor2acceptor",shape = "donor2acceptor",text="timeDSS")+
+  # scale_fill_manual(values = c("blue","red",hsv(.1,1,1),hsv(.5,1,1),"purple"))+
+  scale_size_continuous(range=c(5,9))+
+  coord_cartesian(xlim=range(-0.3,0.4),ylim=range(-0.5,0.35)) 
+```
+
+
 
 #### ggplot对象生成后额外添加修改，字体等需要重新定义
 ```
