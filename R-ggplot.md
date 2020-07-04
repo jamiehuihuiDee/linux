@@ -50,13 +50,24 @@ aes 设置参考vignette("ggplot2-specs")
 
 ```
 #### text
-- theme 里面设置不同位置的参数，通过element_text指定
+- theme 里面设置不同位置的参数，通过element_text指定,axis.line 设置图上的线条
 ```    
 theme(panel.grid = element_blank(), 
         legend.text = element_text(size = 20),legend.title = element_text(size=20),# for legend
                axis.text=element_text(size=20),axis.title = element_text(size=20), # for axis and its title
                strip.text=element_text(size=20))   # for facet label
+               
+   ## 三元相图，可以将内部的线条都删除，major何minor都需要            
+    theme(panel.grid = element_blank(), panel.grid.major=element_line(colour=NA),
+          panel.grid.minor =element_line(colour=NA),
+          legend.text = element_text(size = 20),legend.title = element_text(size=20),# for legend
+          axis.text=element_text(size=20),axis.title = element_text(size=20), # for axis and its title
+          strip.text=element_text(size=20))  
 ```
+#### text annotation
+    annotate("text",x = sub_data_ord$pc1, y =  sub_data_ord$pc2,
+              label=sub_data_ord[,text],size=3)+
+
 #### facet 分面
 - 固定scale,nrow设置分面行数，scale=“free”用于自由调整scale
 ```
