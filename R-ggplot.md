@@ -52,10 +52,10 @@ aes 设置参考vignette("ggplot2-specs")
 #### text
 - theme 里面设置不同位置的参数，通过element_text指定,axis.line 设置图上的线条
 ```    
-theme(panel.grid = element_blank(), 
-        legend.text = element_text(size = 20),legend.title = element_text(size=20),# for legend
-               axis.text=element_text(size=20),axis.title = element_text(size=20), # for axis and its title
-               strip.text=element_text(size=20))   # for facet label
+    theme(panel.grid = element_blank(), 
+        legend.text = element_text(size = 15),legend.title = element_text(size=20),# for legend
+               axis.text=element_text(size=15),axis.title = element_text(size=15), # for axis and its title
+               strip.text=element_text(size=15))  # for facet label
                
    ## 三元相图，可以将内部的线条都删除，major何minor都需要            
     theme(panel.grid = element_blank(), panel.grid.major=element_line(colour=NA),
