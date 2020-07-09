@@ -8,3 +8,6 @@
 - install File::Basename Getopt::Long List::Util Parallel::ForkManager Pod::Usage  Method::Generate::Constructor
 - m   # get the install modules of the cpan
 - if installed failed, try more time and it will work out
+
+#### check if installed 
+- parallel ##check if parallel is installed
