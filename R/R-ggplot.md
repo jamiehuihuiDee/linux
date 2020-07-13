@@ -111,7 +111,15 @@ pcoa_plot_size(data_ord,pcoa,metric=metric,title_name = "day -25 to day 7 ",size
   scale_size_continuous(range=c(5,9))+
   coord_cartesian(xlim=range(-0.3,0.4),ylim=range(-0.5,0.35)) 
 ```
-
+#### linetype
+- The different line types available in R software are : “blank”, “solid”, “dashed”, “dotted”, “dotdash”, “longdash”, “twodash”.
+```{r}
+ggplot(df2, aes(x=time, y=bill, group=sex)) +
+  geom_line(aes(linetype=sex))+
+  geom_point()+
+  scale_linetype_manual(values=c("twodash", "dotted"))+
+  theme(legend.position="top")
+```
 
 
 #### ggplot对象生成后额外添加修改，字体等需要重新定义
