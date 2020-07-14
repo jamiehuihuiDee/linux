@@ -121,6 +121,11 @@ ggplot(df2, aes(x=time, y=bill, group=sex)) +
   theme(legend.position="top")
 ```
 
+#### axis 范围
+```{r}
+ylim(0,NA) ### 设定最小值
+```
+
 
 #### ggplot对象生成后额外添加修改，字体等需要重新定义
 ```
