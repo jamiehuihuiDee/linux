@@ -42,6 +42,8 @@ aes 设置参考vignette("ggplot2-specs")
 #### aes shape
 + 对应的数据需要是factor，提前转换好
 
+
+
 #### 画布格子清除，保留坐标轴黑线
 ```{r}
    theme( panel.grid.minor = element_blank(),
@@ -51,7 +53,7 @@ aes 设置参考vignette("ggplot2-specs")
 ```
 #### text
 - theme 里面设置不同位置的参数，通过element_text指定,axis.line 设置图上的线条
-```    
+```    通用
     theme(panel.grid = element_blank(), 
         legend.text = element_text(size = 15),legend.title = element_text(size=20),# for legend
                axis.text=element_text(size=15),axis.title = element_text(size=15), # for axis and its title
@@ -63,6 +65,9 @@ aes 设置参考vignette("ggplot2-specs")
           legend.text = element_text(size = 20),legend.title = element_text(size=20),# for legend
           axis.text=element_text(size=20),axis.title = element_text(size=20), # for axis and its title
           strip.text=element_text(size=20))  
+          
+    ### 字体倾斜
+    theme(axis.text.x=element_text(angle=0,hjust=0.5,size = 8))
 ```
 #### text annotation
     annotate("text",x = sub_data_ord$pc1, y =  sub_data_ord$pc2,
