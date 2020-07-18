@@ -68,6 +68,17 @@ aes 设置参考vignette("ggplot2-specs")
           
     ### 字体倾斜
     theme(axis.text.x=element_text(angle=0,hjust=0.5,size = 8))
+    
+   
+  #### y 坐标换行
+  labs(x="Days",y="log10 16S rRNA gene copies\n (per gram of wet weight)")
+  
+  #### x 轴标注顺序，具体字符
+  scale_x_discrete(limits=c("3", "5", "4"))
+  
+  
+ #### legend 修改标签名字
+  scale_fill_discrete(name = "Species", labels = c("S", "V1", "V2"))
 ```
 #### text annotation
     annotate("text",x = sub_data_ord$pc1, y =  sub_data_ord$pc2,
