@@ -174,6 +174,7 @@ ggplot(same_melt,aes(x=gene_name,weight=value,fill=variable)) +
 ```
 
 #### 折线图
+-  
 - 数据排好序，按照x轴排序
 ```{r}
 data_all = data_all[order(data_all[,color]),]  ## 按照时间顺序等排序
