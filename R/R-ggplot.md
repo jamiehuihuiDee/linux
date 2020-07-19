@@ -174,7 +174,7 @@ ggplot(same_melt,aes(x=gene_name,weight=value,fill=variable)) +
 ```
 
 #### 折线图
--  
+-  geom_line只能从左向右连线，geom_path可以多种方向，pca用geom_path
 - 数据排好序，按照x轴排序
 ```{r}
 data_all = data_all[order(data_all[,color]),]  ## 按照时间顺序等排序
