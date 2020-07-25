@@ -119,7 +119,13 @@ geom_point(aes(fill =sub_data_ord[,  color],size=sub_data_ord[,size]),color="bla
 ```
 #### size
 - size 都是数值型，一般设定的range根据数值型的范围进行调整,range(5,9)按照距离分配在-25，0，7三个数值之间，用gif作图比较方便
+- size 放在aes里面自动将数字转换为factor，保证作图时候大小在一定范围内均等分配
 ```{r}
+ ggplot(sub_data_ord, aes( pc1, pc2)) +
+      geom_point(aes(fill =sub_data_ord[,  color],size=sub_data_ord[,size]),color="black",shape=21) +
+      scale_size_continuous(range=c(5,12))
+
+
 pcoa_plot_size(data_ord,pcoa,metric=metric,title_name = "day -25 to day 7 ",size="timeDSS",
                var1 = "timeDSS",var1_sub = c(-25,0,7),
                color = "donor2acceptor",shape = "donor2acceptor",text="timeDSS")+
