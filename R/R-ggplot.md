@@ -7,6 +7,8 @@ aes 设置参考vignette("ggplot2-specs")
 ```
 
 
+#### data frame var 名字不能包含fill, group 等
+
 ### aes
 + if the aes setting in the ggplot, 全局设定，以后的图层都将基于该设定，在x轴，y轴用不同的数据
 + 如果想要在某个图层修改数据，可以在geom_line(aes())里面设定，设定的参数只适用于该图层
