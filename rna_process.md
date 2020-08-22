@@ -7,18 +7,18 @@
 ## HISAT2
 - http://ccb.jhu.edu/software/hisat2/manual.shtml#building-from-source 下载安装包，解压zip文件，并在添加路径到.bashrc
 - 索引构建,需要下载gtf文件(见gtf下载)
--- 从参考文件gtf提取外显子或者片段
+- 从参考文件gtf提取外显子或者片段
 ```
 extract_exons.py /home/jhtang/miniconda3/bin/stringtie/reference/Mus_musculus.GRCm38.99.gtf  >Mus_GRCm38_99.exon
 
 extract_splice_sites.py /home/jhtang/miniconda3/bin/stringtie/reference/Mus_musculus.GRCm38.99.gtf >Mus_GRCm38_99.ss
 ```
--- 根据gtf提取信息建立fasta索引库，ss输入splice文件，exon对应外显子，接着是参考fasta文件（多个fasta用逗号隔开），最后为生成文件名
+- 根据gtf提取信息建立fasta索引库，ss输入splice文件，exon对应外显子，接着是参考fasta文件（多个fasta用逗号隔开），最后为生成文件名
 ```
 hisat2-build --ss Mus_GRCm38_99.ss --exon Mus_GRCm38_99.exon mm10.fa Mus_GRCm38_99_tran
 ```
--- hisat2 官网索引，hisat2 官网建立好的索引https://daehwankimlab.github.io/hisat2/download/ （建议根据自己需要重新建立）
--- hisat2 运行
+- hisat2 官网索引，hisat2 官网建立好的索引https://daehwankimlab.github.io/hisat2/download/ （建议根据自己需要重新建立）
+- hisat2 运行
 ```
 # -x 输入索引文件，代表reference， -1，-2 分别输入双端序列，如果只有一个sample直接用-U  -s是输出文件
 hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188044_chrX_1.fastq.gz -2 chrX_data/samples/ERR188044_chrX_2.fastq.gz 
