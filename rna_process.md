@@ -27,7 +27,7 @@ hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran -1 chrX_data/samples/ERR188044_
 hisat2 -p 8 --dta -x chrX_data/indexes/chrX_tran --sra-acc SRR3137739 –S ERR188245_chrX.sam  
 ```
 
-##STAR 
+## STAR 
 - 安装 https://github.com/alexdobin/STAR
 - https://chagall.med.cornell.edu/RNASEQcourse/STARmanual.pdf
 
@@ -123,12 +123,12 @@ https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/
 - https://pypi.org/project/HTSeq/0.9.1/
 -htseq 统计运行，输出结果是sam文件加上标注
 ```
-# 用于sam文件,输入gtf文件（参考文件要跟hisat2或者STAR使用一样的gtf文件），-o 输出文件，-s 序列方向，-i 统计基因名gene_name，如果比对有问题可以调整方向在gff文件可能是gene,需要查看gff文件对应在哪个位置
+## 用于sam文件,输入gtf文件（参考文件要跟hisat2或者STAR使用一样的gtf文件），-o 输出文件，-s 序列方向，-i 统计基因名gene_name，如果比对有问题可以调整方向在gff文件可能是gene,需要查看gff文件对应在哪个位置
 htseq-count  C_Ce2.sam \
  /home/jhtang/miniconda3/bin/stringtie/reference/ncbi/GCF_000001635.26_GRCm38.p6_genomic.gtf \
 -s reverse -o C_Ce2_count.sam -i gene_name 
 
-# 用于bam文件，运行更慢，建议还是用sam格式，
+## 用于bam文件，运行更慢，建议还是用sam格式，
 htseq-count  C_Ce2.bam  -f bam\
  /home/jhtang/miniconda3/bin/stringtie/reference/ncbi/GCF_000001635.26_GRCm38.p6_genomic.gtf \
 -s reverse -o C_Ce2_count.sam -i gene_name 
@@ -139,7 +139,7 @@ htseq-count  C_Ce2.bam  -f bam\
 - 解压了就可以，不需要make
 - featureCounts 统计
 ```
-## -p 统计 fragment双端，-T 运算核，-t统计按照exon类别的reads数量，
++ -p 统计 fragment双端，-T 运算核，-t统计按照exon类别的reads数量，
 -g指定从gtf文件中挑选的注释信息gene_id，ensembl的gtf用gene_name，ncbi的gff或者gtf用gene，ncib的gtf也可以用gene_id,可以看相应文件是否存在gene_name
 -a 参考文件要跟hisat2或者STAR使用一样的gtf文件
 -M 是计算multimapped，默认不计算，-o 输出文件
