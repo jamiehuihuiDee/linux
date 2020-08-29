@@ -74,6 +74,8 @@ aes 设置参考vignette("ggplot2-specs")
 #### text annotation
     annotate("text",x = sub_data_ord$pc1, y =  sub_data_ord$pc2,
               label=sub_data_ord[,text],size=3)+
+              
+     或者 geom_text(x="OD",y=.2,label="sd",colour="black",size=4)
 #### facet 分面
 - 固定scale,nrow设置分面行数，scale=“free”用于自由调整scale
 ```
