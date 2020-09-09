@@ -28,19 +28,18 @@ optional arguments:
 
 ```
 
-
-
-
+### for paired end
+```
 qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality] ' \
   --input-path manifest.txt \
-  --output-path paired-end-demux.qza \
+  --output-path paired-end-demux.qza \   
   --input-format PairedEndFastqManifestPhred33V2 
 
 qiime cutadapt trim-paired \
   --i-demultiplexed-sequences paired-end-demux.qza \
   --p-cores 8 \
-  --p-front-f ACTCCTACGGGAGGCAGCA \
+  --p-front-f ACTCCTACGGGAGGCAGCA \    ## change the forward primer and reverse primer 
   --p-front-r GGACTACHVGGGTWTCTAAT \
   --p-overlap 8 \
   --p-error-rate 0.15 \
@@ -59,7 +58,7 @@ qiime dada2 denoise-paired \
   --o-table table.qza \
   --o-representative-sequences rep-seqs.qza \
   --o-denoising-stats stats.qza \
-  --p-n-threads 10 
+  --p-n-threads 10                        ## change the nodes
 
 endtime=$(date +"%s")
 diff=$(($endtime - $starttime))
@@ -67,9 +66,9 @@ echo Dada2 finished Elapsed time is $(($diff/60)) minutes and $(($diff%60)) seco
 
 # 标注
 qiime feature-classifier classify-sklearn \
- --i-classifier /home/jhtang/mytest/silva/Nr99_138/classifier_taxonomy_slv_138_Nr99_338_806.qza \
+ --i-classifier /home/jhtang/mytest/silva/Nr99_138/classifier_taxonomy_slv_138_Nr99_338_806.qza \   ## change the classifier path and used the same primer for classifier
   --i-reads rep-seqs.qza \
-  --o-classification taxonomy_100.qza 
+  --o-classification taxonomy_99.qza 
 
 
 #进化树
@@ -105,7 +104,6 @@ qiime tools export \
 
 #将table生成的biom 文件转化为txt文件, qza可以通过unzip解压  qiime2 里面有这个biom的软件
 biom convert -i exported/feature-table.biom -o exported/feature-table.txt --to-tsv
-
 
 
 endtime=$(date +"%s")
