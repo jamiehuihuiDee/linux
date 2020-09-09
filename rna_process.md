@@ -4,6 +4,8 @@
 - HISAT2 + htseq/featureCounts（更快）+DESeq2 （文献推荐）
 - STAR + htseq/featureCounts（更快）+DESeq2 （实验室内部使用，已有文献较多）
 
+## 服务器流程
+
 ## HISAT2
 - http://ccb.jhu.edu/software/hisat2/manual.shtml#building-from-source 下载安装包，解压zip文件，并在添加路径到.bashrc
 - 索引构建,需要下载gtf文件(见gtf下载)
