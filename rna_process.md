@@ -5,6 +5,42 @@
 - STAR + htseq/featureCounts（更快）+DESeq2 （实验室内部使用，已有文献较多）
 
 ## 服务器流程
+```
+(新服务器，使用STAR，featureCounts, R (with packages stringr))
+source ~/.bashrc
+python /home/jhtang/mytest/code/process_rna/rna_workflow/run_rna.py\
+ -i /home/LDlab/wangying/first_RNA_gut/2.cleandata -f ZL -s .clean.fq.gz \
+-r /home/jhtang/bio_software/STAR-2.7.4a/reference/mice 
+
+基本参数
+-i 输入文件夹路径，RNA的正反序列放在每个sample下面，如ZL12_FRAS202086697-1r/ZL12_FRAS202086697-1r_1.clean.fq.gz，ZL12_FRAS202086697-1r/ZL12_FRAS202086697-1r_1.clean.fq.gz
+-f 输入文件夹前缀， 如ZL
+-s 输入文件名后缀， 如.fq.gz
+-r 输入star reference 路径， 用STAR 根据gtf 构建的索引路径
+-fr 输入featurecounts 的gtf参考路径，使用的gtf与STAR保持一致， 
+-n nodes，多线程数量
+-R Rscript 路径， 
+
+parser.add_argument('-i', '--input', dest='path',type=str,required=True,
+                    help="the path of the file folder" )
+parser.add_argument('-f', '--prefix', dest='folder_prefix',type=str,required=False, default="ZL",
+                    help="the prefix of the file folder" )
+parser.add_argument('-s', '--suffix', dest='suffix',type=str,required=False, default=".fq.gz",
+                    help="the suffix of the file to run in STAR" )
+parser.add_argument('-r', '--star_ref', dest='star_ref',type=str,required=False,
+                    default="/home/jhtang/bio_software/STAR-2.7.4a/reference/mice",
+                    help="the path of the reference file for STAR, default is mice" )
+parser.add_argument('-fr', '--featureCounts_ref', dest='featureCounts_ref',type=str,required=False,
+                    default="/home/jhtang/bio_software/database/RNA_gtf/mice/gencode.vM25.annotation.gtf",
+                    help="the path of the reference file for featureCounts, default is mice, the same gtf as STAR" )
+parser.add_argument('-n','--nodes', dest='nodes',type=str,required=False, default='8',
+                    help="the nodes used for tasks")
+parser.add_argument('-R','--R', dest='R_path',type=str,required=False, default='/home/jhtang/miniconda3/envs/R3.6.1/bin/Rscript',
+                    help="the path for R script")
+
+
+
+```
 
 ## HISAT2
 - http://ccb.jhu.edu/software/hisat2/manual.shtml#building-from-source 下载安装包，解压zip文件，并在添加路径到.bashrc
