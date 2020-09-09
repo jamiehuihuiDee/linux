@@ -1,9 +1,4 @@
-###check the quality in whole 
-mkdir fastqc_out
-cat /home/LDlab/LiuXinan_data/third_20200528_fear_conditioning/raw_data_fear_conditioning/*R1.fastq.gz > all_R1.fastq.gz
-cat /home/LDlab/LiuXinan_data/third_20200528_fear_conditioning/raw_data_fear_conditioning/*R2.fastq.gz > all_R2.fastq.gz
-fastqc all_R1.fastq.gz -t 5 -o ./fastqc_out 
-fastqc all_R2.fastq.gz -t 5 -o ./fastqc_out 
+
 
 #### import the raw reads into qza type file
 qiime tools import \
