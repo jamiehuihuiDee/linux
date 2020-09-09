@@ -28,7 +28,7 @@ optional arguments:
 
 ```
 
-### for paired end
+### for paired end , 将下列代码整合到一个目录，命名为run_qiime.sh, 然后通过 bash run_qiime.sh 运行
 ```
 qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality] ' \
