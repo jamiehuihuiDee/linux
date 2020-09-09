@@ -1,0 +1,8 @@
+## time
+echo Starting Time is `date`
+echo Directory is `pwd`
+starttime=$(date +"%s")
+
+endtime=$(date +"%s")
+diff=$(($endtime - $starttime))
+echo Elapsed time is $(($diff/60)) minutes and $(($diff%60)) seconds.
