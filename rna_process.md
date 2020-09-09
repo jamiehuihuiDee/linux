@@ -21,23 +21,29 @@ python /home/jhtang/mytest/code/process_rna/rna_workflow/run_rna.py\
 -n nodes，多线程数量
 -R Rscript 路径， 
 
-parser.add_argument('-i', '--input', dest='path',type=str,required=True,
-                    help="the path of the file folder" )
-parser.add_argument('-f', '--prefix', dest='folder_prefix',type=str,required=False, default="ZL",
-                    help="the prefix of the file folder" )
-parser.add_argument('-s', '--suffix', dest='suffix',type=str,required=False, default=".fq.gz",
-                    help="the suffix of the file to run in STAR" )
-parser.add_argument('-r', '--star_ref', dest='star_ref',type=str,required=False,
-                    default="/home/jhtang/bio_software/STAR-2.7.4a/reference/mice",
-                    help="the path of the reference file for STAR, default is mice" )
-parser.add_argument('-fr', '--featureCounts_ref', dest='featureCounts_ref',type=str,required=False,
-                    default="/home/jhtang/bio_software/database/RNA_gtf/mice/gencode.vM25.annotation.gtf",
-                    help="the path of the reference file for featureCounts, default is mice, the same gtf as STAR" )
-parser.add_argument('-n','--nodes', dest='nodes',type=str,required=False, default='8',
-                    help="the nodes used for tasks")
-parser.add_argument('-R','--R', dest='R_path',type=str,required=False, default='/home/jhtang/miniconda3/envs/R3.6.1/bin/Rscript',
-                    help="the path for R script")
+usage: run_rna.py [-h] -i PATH [-f FOLDER_PREFIX] [-s SUFFIX] [-r STAR_REF]
+                  [-fr FEATURECOUNTS_REF] [-n NODES] [-R R_PATH]
 
+STAR
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i PATH, --input PATH
+                        the path of the file folder
+  -f FOLDER_PREFIX, --prefix FOLDER_PREFIX
+                        the prefix of the file folder
+  -s SUFFIX, --suffix SUFFIX
+                        the suffix of the file to run in STAR
+  -r STAR_REF, --star_ref STAR_REF
+                        the path of the reference file for STAR, default is
+                        mice
+  -fr FEATURECOUNTS_REF, --featureCounts_ref FEATURECOUNTS_REF
+                        the path of the reference file for featureCounts,
+                        default is mice, the same gtf as STAR
+  -n NODES, --nodes NODES
+                        the nodes used for tasks
+  -R R_PATH, --R R_PATH
+                        the path for R script
 
 
 ```
