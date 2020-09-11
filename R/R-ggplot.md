@@ -166,8 +166,24 @@ data_all = data_all[order(data_all[,color]),]  ## 按照时间顺序等排序
 
 
 ##### 散点图
-- 同一位置稍微抖动position
+- 同一位置稍微抖动position，dodge2使用的时候可以不设置group，但是dodge就需要，另外x轴一定是factor，否则散点不能抖动，如果要用numeric，需要自己手动调整point的横坐标
 ```{r}
 ggplot(meta1,aes(x=timeFMT,y=observed,group=donor2acceptor))+
   geom_point(aes(color=donor2acceptor),size=2,position = position_dodge2(width = 0.2))
   ```
+  
+  
+  ### 置信椭圆
+  ```{r} ## fill 的部分对应factor，需要有多种颜色对应fill，所有图层只能使用一个scale_fill_manuall
+  p+ 
+  scale_fill_manual(values = color_db[c("O0",rep("O2",12)),"value"])+
+  stat_ellipse(data=p$data,show.legend = FALSE,aes(x=pc1,y=pc2,fill=as.factor(p$data$timeFMT)),
+               geom = "polygon",alpha=0.2,level = 0.95)
+  
+  
+  ```
+  
+  
+  
+  
+  
