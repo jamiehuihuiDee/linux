@@ -70,6 +70,11 @@ aes 设置参考vignette("ggplot2-specs")
   
  #### legend 修改标签名字
   scale_fill_discrete(name = "Species", labels = c("S", "V1", "V2"))
+
+  scale_color_manual(values =color_db[c("O0","O2","O3"),"value"],
+                     name="treatment",
+                     breaks = c("O0","O2","O3"),
+                     labels=c("ctrl","ABH","ABL"))
 ```
 #### text annotation
     annotate("text",x = sub_data_ord$pc1, y =  sub_data_ord$pc2,
