@@ -1,6 +1,9 @@
 #6-1、 根据参考库生成一个新的qza数据集 ，参考文库建立
- # https://www.arb-silva.de/download/archive/
- # https://www.arb-silva.de/no_cache/download/archive/current/Exports/
+ ```
+ https://www.arb-silva.de/download/archive/
+ https://www.arb-silva.de/no_cache/download/archive/current/Exports/
+ ```
+ 
  #silva 参考库
 #######fasta只有序号和序列,一定要解压gz  gzip -d **.gz   Nr100的制作，导入fasta格式
 
