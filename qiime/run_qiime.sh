@@ -1,5 +1,5 @@
 ### 
-source activate qiime2-2019.7
+source activate /home/jhtang/miniconda3/envs/qiime2-2019.7
 echo Starting Time is `date`
 echo Directory is `pwd`
 starttime=$(date +"%s")
