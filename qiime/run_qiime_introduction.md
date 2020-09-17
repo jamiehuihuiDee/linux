@@ -5,7 +5,7 @@ echo Directory is `pwd`
 starttime=$(date +"%s")
 
 ### 详细说明
-## 单端导入可以参考 https://docs.qiime2.org/2020.8/tutorials/moving-pictures/
+### 单端导入可以参考 https://docs.qiime2.org/2020.8/tutorials/moving-pictures/
 qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality] ' \
   --input-path manifest.txt \
@@ -43,7 +43,7 @@ starttime=$(date +"%s")
 
 # 标注
 qiime feature-classifier classify-sklearn \
- --i-classifier /home/jhtang/mytest/silva/Nr99_138/classifier_taxonomy_slv_138_Nr99_338_806.qza \  ## 对应引物构建的分类器
+ --i-classifier /home/jhtang/mytest/silva/Nr99_138/classifier_taxonomy_slv_138_Nr99_338_806.qza \  ##对应引物构建的分类器   
   --i-reads rep-seqs.qza \
   --o-classification taxonomy_99.qza 
 
