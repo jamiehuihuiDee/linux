@@ -1,0 +1,16 @@
+
+### 详细说明
+## 可以参考 https://docs.qiime2.org/2020.8/tutorials/moving-pictures/
+### 不同批次运行结果可以合并到一起，但是不同批次不能有重复样品名字。
+#### different batch run after dada2, could be merge together for the next part of classifier, but could not with the same sample id
+qiime feature-table merge \
+  --i-tables table-1.qza \
+  --i-tables table-2.qza \
+  --o-merged-table table.qza
+  
+qiime feature-table merge-seqs \
+  --i-data rep-seqs-1.qza \
+  --i-data rep-seqs-2.qza \
+  --o-merged-data rep-seqs.qza
+
+
