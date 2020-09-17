@@ -6,16 +6,19 @@
  
  #silva 参考库
 #######fasta只有序号和序列,一定要解压gz  gzip -d **.gz   Nr100的制作，导入fasta格式
-
+```
 qiime tools import \
   --type 'FeatureData[Sequence]' \
   --input-path SILVA_132_SSURef_seq.fasta \   ## change the name and the output
   --output-path SILVA_132_SSURef_seq.qza 
 
+```
 ##########3taxonomy需要有一个标头，即列名。包含序号以及对应的taxonomy  Nr100的制作   
 ##只能有两列，tab隔开，不然报错，taxonomy名字也不能有多余空格
 
 ### 导入数据，taxonomy 与 fasta分别导入
+
+```
 qiime tools import \
   --type 'FeatureData[Taxonomy]' \
   --input-format HeaderlessTSVTaxonomyFormat \ 
@@ -43,4 +46,4 @@ qiime feature-classifier fit-classifier-naive-bayes \
   --i-reference-reads ref-seqs_Nr99_515_806.qza \
   --i-reference-taxonomy ref-taxonomy_Nr99.qza \
   --o-classifier classifier_taxonomy_slv_138_Nr99_515_806.qza  
-  
+```
