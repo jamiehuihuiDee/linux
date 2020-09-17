@@ -6,7 +6,7 @@ nohup bash /home/jhtang/mytest/code/seqs/reads_count.sh  \
 ```
 
 
-## make manifest， 样品地址构建，对于双端序列对应三列，第一列史sampleid，其余两列史正链与反链路径
+### make manifest， 样品地址构建，对于双端序列对应三列，第一列是sampleid，其余两列是正链与反链路径
 ```
 python /home/jhtang/mytest/code/process_16S/manifest_paired.py -s .R -m .R \
 -d /home/LDlab/wangying/DXX/fourth_batch_16S_20200527/fourth_batch_2
