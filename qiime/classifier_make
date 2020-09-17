@@ -1,12 +1,13 @@
-6-1、 根据参考库生成一个新的qza数据集 ，参考文库建立
+#6-1、 根据参考库生成一个新的qza数据集 ，参考文库建立
  # https://www.arb-silva.de/download/archive/
  # https://www.arb-silva.de/no_cache/download/archive/current/Exports/
  #silva 参考库
 #######fasta只有序号和序列,一定要解压gz  gzip -d **.gz   Nr100的制作，导入fasta格式
-nohup qiime tools import \
+
+qiime tools import \
   --type 'FeatureData[Sequence]' \
-  --input-path SILVA_132_SSURef_seq.fasta \
-  --output-path SILVA_132_SSURef_seq.qza &
+  --input-path SILVA_132_SSURef_seq.fasta \   ## change the name and the output
+  --output-path SILVA_132_SSURef_seq.qza 
 
 ##########3taxonomy需要有一个标头，即列名。包含序号以及对应的taxonomy  Nr100的制作   
 ##只能有两列，tab隔开，不然报错，taxonomy名字也不能有多余空格
@@ -14,8 +15,8 @@ nohup qiime tools import \
 ### 导入数据，taxonomy 与 fasta分别导入
 qiime tools import \
   --type 'FeatureData[Taxonomy]' \
-  --input-format HeaderlessTSVTaxonomyFormat \
-  --input-path SILVA_132_SSURef_tax.txt \
+  --input-format HeaderlessTSVTaxonomyFormat \ 
+  --input-path SILVA_132_SSURef_tax.txt \     ## change the name and the output
   --output-path ref-taxonomy_all.qza 
   
   qiime tools import \
