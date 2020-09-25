@@ -47,7 +47,7 @@ starttime=$(date +"%s")
 qiime feature-classifier classify-sklearn \
  --i-classifier /home/jhtang/mytest/silva/Nr99_138/classifier_taxonomy_slv_138_Nr99_338_806.qza \  ##对应引物构建的分类器 ，需要修改
   --i-reads rep-seqs.qza \
-  --o-classification taxonomy_99.qza 
+  --o-classification taxonomy_99.qza    ## 如果用的NR 100 这里也要改一下
 
 
 #进化树
@@ -77,7 +77,7 @@ qiime tools export \
  --output-path exported
  
 qiime tools export \
-  --input-path taxonomy_100.qza \
+  --input-path taxonomy_99.qza \  ## 如果用的NR 100 这里也要改一下
   --output-path exported
 
 
