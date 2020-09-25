@@ -116,13 +116,52 @@ list.files(pattern=".csv")
 
 ```
 
-### 数据类型转换
+### 数据类型与转换
 ```
 - list
-1、 转为data.frame
--- data.frame(matrix(unlist(gene_length2),nrow = length(gene_length2),byrow = TRUE))
--- h <- sapply(filt_seq, strsplit,split="")
+1、 list操作
+-- length 读取长度
+-- list 字符分割
++ hh <-t(as.data.frame(str_split(tax0[1:nrow(tax0),col],"_",n=4)))[,4] %>% as.data.frame() #需要转置并且在n设置固定返回值，防止NA值
++  str_split(h[i,"KEGG.GENES"]," ",n=10,simplify = TRUE) #simplify 返回vector， 或者list
+
+-- list数据选择
++ purrr::map(list,1),选择每个list 的第一个值
++ 提取长度大于1，去除null
+h@ends[lapply(h@ends,length )>0]
+
+-- list转为data.frame
++ data.frame(matrix(unlist(gene_length2),nrow = length(gene_length2),byrow = TRUE))
++ h <- sapply(filt_seq, strsplit,split="")
 h_all <- do.call(rbind,h)
+
+-- dataframe 转为list
++ 短的行最后用长的行填充 
+o <- t(tax0)%>% as.data.frame()
+h <- split(o,rownames(o))
++ 组装两个dataframe成为list
+ c <- list(frame1,frame2) # 用于函数输出结果
++ as.list
+
+-- 命名
++ list本身没有名字，即便是1，2，3，需要自己重新命名为数字
+names(ends_data)  <- seq(1,length(ends_data))
 
 
 ```
+- factor
+-- dataframe factor 全部转为character
+data.frame(as.matrix(unique_pos),stringsAsFactors = FALSE)
++ 字符串修改，需要改为character才能操作字符串分割或者重新赋值
++ 判断的时候也需要转化为字符串
+-- factor转数值
+as.numeric(as.matrix())
+factor直接转化为numeric只会根据level进行1到100的标记，先转为matrix再转为numeric
+-- 再次factor重新定义水平
+factor(.,levels=c("B","A","C"),labels = c("1","2","3"))
++ 多个数值对应一个level，直接再labels改为同名
+factor(as.numeric(as.matrix(meta$Day)),levels=c(0,8,10,31),labels = c(0,8,8,31))
+
+-- 其它
++ summary，只能统计数值或者factor，字符串无用， summary默认统计100个不同水平
+
