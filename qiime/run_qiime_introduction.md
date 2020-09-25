@@ -15,8 +15,10 @@ qiime tools import \
 qiime cutadapt trim-paired \
   --i-demultiplexed-sequences paired-end-demux.qza \
   --p-cores 8 \
-  --p-front-f ACTCCTACGGGAGGCAGCA \  ## 正向引物
+  --p-front-f ACTCCTACGGGAGGCAGCA \  ## 正向引物，需要修改
+  
   --p-front-r GGACTACHVGGGTWTCTAAT \  ## 反向引物
+  
   --p-overlap 8 \
   --p-error-rate 0.15 \
   --p-discard-untrimmed   \
@@ -43,7 +45,7 @@ starttime=$(date +"%s")
 
 # 标注
 qiime feature-classifier classify-sklearn \
- --i-classifier /home/jhtang/mytest/silva/Nr99_138/classifier_taxonomy_slv_138_Nr99_338_806.qza \  ##对应引物构建的分类器   
+ --i-classifier /home/jhtang/mytest/silva/Nr99_138/classifier_taxonomy_slv_138_Nr99_338_806.qza \  ##对应引物构建的分类器 ，需要修改
   --i-reads rep-seqs.qza \
   --o-classification taxonomy_99.qza 
 
