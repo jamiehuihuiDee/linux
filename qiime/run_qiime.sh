@@ -34,6 +34,8 @@ qiime dada2 denoise-paired \
   --o-denoising-stats stats.qza \
   --p-n-threads 10 
 
+
+
 endtime=$(date +"%s")
 diff=$(($endtime - $starttime))
 echo Dada2 finished Elapsed time is $(($diff/60)) minutes and $(($diff%60)) seconds.
