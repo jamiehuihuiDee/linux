@@ -337,9 +337,54 @@ setdiff(x,y)
 
 - 数据运算
 -- sweep
-+ 对行进行sum并且行的每个数除以sum，注意分母为零
++ 对行进行sum并且行的每个数除以sum，注意分母为零，1是行
 sweep(otu_df_all,1,rowSums(otu_df_all),'/')
-+ 
+-- aggregate
++ 按照某列对行操作，一般用于多行数据或同一行之内相加第一个为要相加的数值，第二个是分组
+otu_tax3 <- aggregate(.~taxonomy,data = otu_tax2,sum) # 公式右边表示按照的某列
+-- group_by (类似于mysql)
++ 作为后续运算的基准，没有改变数据框格式，统计使用summarise进行操作
+by_cyl <- mtcars %>% group_by(cyl)
+%>% summarise(
+  disp = mean(disp),
+  hp = mean(hp)
+)
+
+-- 行统计
++ rowSums
++ rowsum 按照某列对行操作，一般用于多行数据或同一行之内相加第一个为要相加的数值，第二个是分组，数值变量才能放在第一个位置，一般根据行水平对同一列内的不同行进行加和
+rowsum(hCount$C_Ce2,group = hCount$gene_id)
+
++ rowMean
++ rowsum
+
+-- 数值统计
++ tabulate
+ tabulate(as.matrix(read_qual))
++ summary 统计不同factor或者数值的个数并且返回相应的名字，默认只统计100中，
+ summary(as.factor(otu_1$sample1784>0)，maxsum=Inf)
++ mean均值
+mean(c(A,B,B))
++ sd 方差，自由度减去1
+
+-- 排序 
++ sort 按照排序重新排列dataframe
+rawdata[sort(rawdata$LCS,decreasing = TRUE,index.return = TRUE)$ix,]  # ix是排序位置信息
++ order
+idx<- order(rowMeans(norm), decreasing = T)
+norm = norm[idx,]
++ arrange
+results_transcripts = arrange(results_transcripts,pval)，根据pval由小到大
 
 
+-- S4 数据显示
+structure(bg)$trans
++ 一般使用@获取信息
++ 获取名字
+names(h@var1) 
++ 某些信息只能通过S4的函数才能调用，像fasta，需要把它调用出来再转换
+seqs<-  ShortRead::readFasta("rep_seqs.fasta")
+reads <- sread(seqs) 
+ id(seqs)
+ h <- data.frame(id=id(seqs),reads=sread(seqs))
 
