@@ -170,9 +170,14 @@ factor(as.numeric(as.matrix(meta$Day)),levels=c(0,8,10,31),labels = c(0,8,8,31))
 - dataframe
 
 -- 创建
-+ data.frame(stringsAsFactors = FALSE) #取消factor自动转化
-+  规定行数
-a <- matrix("0",nrow=1,seq_max) %>% as.data.frame() #
++ 取消factor自动转化
+data.frame(stringsAsFactors = FALSE) 
++  规定行数，通过matrix转化
+a <- matrix("0",nrow=1,seq_max) %>% as.data.frame() 
++ 逐个变量设定
+data.frame(name=,,,.value=....）
++ 列名获取
+data[0,]
 
 -- 行名问题
 + 行名不能以中括号[开头，否则自动处理为X. ，减号也自动处理为点. ，但是输出显示行名还是正常，如果要选择数据就会出错。
@@ -185,6 +190,156 @@ a <- matrix("0",nrow=1,seq_max) %>% as.data.frame() #
 -- 数据选择与合并问题
 + matrix只有一列可以直接用a[1:10]查找，但只有一列的dataframe一定要指定列名
 + cbind: 如果想要将数字数据框与字符串加在一起，数值型的放在开头，否则全都显示为NA，当然可以先将数值型数据转化为字符串
++ 数据选择最好选择两列，选一列辉自动变成array
++ 数据添加新行
+df["asdfa",]=0 # 但是matrix不可以
+
+```
+```
+- matrix
+-- 行列名
++ 列名可以重复，不会自动检测出来，通过getUniques查出重名。
+
+-- 数据类型转换
++ 字符串转为数值型 
+apply(observed2, 2, as.numeric) %>% as.data.frame
++ dist距离矩阵可以转化为matrix，下三角或上三角缺失部分自动补充完整，才可以添加行列名
+
+-- 特殊使用
++ 检查整个矩阵每一个元素是否满足条件并重新赋值
+data[data>0]=1
++ 名字加数值的类型
+names（data） 读取行名
+
 
 
 ```
+### 函数
+```
+- 函数输入
+-- 已有函数
++ 对于函数中输入的是变量名而不能是格式化变量，需要使用间接输入方式
+ pca_data1 <- subset(pca_data, donor2acceptor %in% var1_sub) ## 直接使用dataframe 中的变量名
+ pca_data1 <- subset(pca_data, pca_data[,var1] %in% var1_sub) # 通过中括号选择格式化名字
+ 
+ - 函数中使用函数，一般apply类型较多
+ blank[-which(apply(blank, 1, function(x) all(is.na(x)))),]
+
+```
+
+## 数据处理
+```
+- 行重复
+h[rep(1,2),] # 重复第一行两次
+
+- NA 处理
+-- 数值型na 
+is.na() #检查
+-- 字符型NA
+h[i,j]=="NA" 检查
+-- na行清除
+blank[-which(apply(blank, 1, function(x) all(is.na(x)))),] 
+meta1 <- meta[which(!is.na(str_match(substr(meta$Title,2,2),"1"))),]
+
+- apply 类型函数
+-- sapply
++ 对数据列，变量执行[操作（相当于分离，对list的分离），并选择第二部分
+sapply(str_split(colnames(otu[i]),'_'),'[',2)
++ sapply执行函数多个变量用c包含
+sapply(data,function,metric)
+
+-- tapply
++ 根据向量计算不同水平的统计值
+tapply(sscore,sclass,mean) 
++ 不同列复制不同次数
+data.frame(lapply(blank,rep,times=c(seqs_count)))
+
+-- apply
++ apply，函数部分多个参数用逗号隔开
+counts0_mad <- data.frame(id=rownames(counts0),mad_value=apply(counts0, 1, mad,constant=1, low=TRUE))
+
+
+- 数据框重整
+-- as.matrix
++ 数据框重整为一列
+ part1_data <- as.matrix(data[,part1]) %>% matrix(.,ncol=1)
+
+-- melt
++ 对于otu里面的数据，根据id以及treatment进行合并，把前面的变量合并成一个变量，确保前面变量数据为数值，并且属性一致，比如都是细菌变量，后面变量将会单独列出，并且根根前面数据扩增，melt后factor发生改变，需要重新factor
+melt(otu_df_rel,id.vars = c( "id",'treatment_time'))
+
+--dcast
++ 左边x是unique，否则需要指定是否要mean，如果是时间有多行，可以选择在事件后增加后缀，右边y，value用于填充,默认自动猜测填充value所在列，可以自己设定value所在列
+dcast(data = observed_data1[,c("treatment_time","value","label_id")], treatment_time ~ label_id)
+dcast(asv[,c(1,4,5)],id ~ batch,value.var = "zero")
+
+-- merge
++ 注意事项
+如果是factor不能merge，一定要把它改为非factor，部分情况可以
+小心重复的行
+
++ 根据行名合并
+pcoaPoint <- merge(pcoa_point,meta1,by = "row.names")
++ 两个数据框用不同的列名合并
+annotation_col1 <- merge(annotation_col,h,by.x = "row.names",by.y = "Rowname")
++ 多个dataframe合并，生成一个list再处理
+ls_df <- list(data.frame(a = 1:10, b = 1:10),
+              data.frame(a = 5:14, c = 11:20),
+              data.frame(a = sample(20, 10), d = runif(10)))
+merge(ls_df, by = "a", all = TRUE)
+
+-- full_join (数据库类型的连接)
++ 不设置by自动把名字相同的列合并
+full_join(tax_melt1[tax_melt1$variable=="P_Firmicutes",
+                              c("sampleId","donor2acceptor","label_id","timeFMT","value")],
+                tax_melt1[tax_melt1$variable=="P_Bacteroidota",
+                          c("sampleId","donor2acceptor","label_id","timeFMT","value")],
+                by=c("sampleId","donor2acceptor","label_id","timeFMT"))
+
+-- anti_join (一个数据框中减去某一部分)
+ anti_join(dis_melt,dis1)
+
+- 名字修改
+-- 列名修改
+names(df)[names(df) == 'old.var.name'] <- 'new.var.name' # 具体到某一个名字
+colnames(norm)[grep("taxonomy",colnames(norm))] <- tax_Name  # 选择某一列名对应的列序号
+
+- 日期
+-- 选择某一个日可以比较大小
+summary(week_clo[week_clo$date < '2018-02-01' & week_clo$weekday == '星期四' ,])
+
+- 符合条件的列
+-- subset
++ 按照行名选择
+h <- subset(rawdata,select = c(1:10))
+h <- subset(rawdata,select = c(1:length(rawdata)))
+h <- subset(rawdata,select = c(seq(from=10, to = 50, by = 10))
+subset(tx,cpgOverlaps >10 )
++ 直接选择某些值
+h<- subset(rawdata,select = c("RA","RPR"))
+subset(cpg,seqnames %in% c("chr1","chr2"))
++ 去除某些列
+top15_newFrame <- subset(newFrame[1:15,],select= -all)  
++ factor设置再删除空值
+h <- factor(tax_melt$variable,levels = c(rownames(top_all),"other"),labels = c(rownames(top_all),"other"))
+h[is.na(h)] <- "other"
+levels(h)
+
+-- 选择数据尽量不选择NA，可以修改为0或者其它
+
+
+-集合处理
+-- 交集 intersect
+-- 并集 union
+-- 选择交集不重叠部分 ,找出x不同于y
+setdiff(x,y)
+
+
+- 数据运算
+-- sweep
++ 对行进行sum并且行的每个数除以sum，注意分母为零
+sweep(otu_df_all,1,rowSums(otu_df_all),'/')
++ 
+
+
+
