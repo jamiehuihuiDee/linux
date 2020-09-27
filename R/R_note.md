@@ -118,7 +118,7 @@ list.files(pattern=".csv")
 
 ### 数据类型与转换
 ```
-- list
+- list （在数据使用过程中，最好把常用的数据打包成list，防止重复删改）
 1、 list操作
 -- length 读取长度
 -- list 字符分割
@@ -149,6 +149,7 @@ names(ends_data)  <- seq(1,length(ends_data))
 
 
 ```
+```
 - factor
 -- dataframe factor 全部转为character
 data.frame(as.matrix(unique_pos),stringsAsFactors = FALSE)
@@ -164,4 +165,26 @@ factor(as.numeric(as.matrix(meta$Day)),levels=c(0,8,10,31),labels = c(0,8,8,31))
 
 -- 其它
 + summary，只能统计数值或者factor，字符串无用， summary默认统计100个不同水平
+```
+```
+- dataframe
 
+-- 创建
++ data.frame(stringsAsFactors = FALSE) #取消factor自动转化
++  规定行数
+a <- matrix("0",nrow=1,seq_max) %>% as.data.frame() #
+
+-- 行名问题
++ 行名不能以中括号[开头，否则自动处理为X. ，减号也自动处理为点. ，但是输出显示行名还是正常，如果要选择数据就会出错。
++ 相同名字的行名自动在末尾添加点以及序号.1，但输出行名也会把后缀去掉与matrix不同，matrix行名都是一样，只是为了标明区别才加上后缀的
++ 最好把行名设定在一个新列,否则降维的时候容易丢失行名
+
+-- 列名问题
++ 可以有重复名，但提取的时候只会选取第一个，其余重复的值不会被提取
+
+-- 数据选择与合并问题
++ matrix只有一列可以直接用a[1:10]查找，但只有一列的dataframe一定要指定列名
++ cbind: 如果想要将数字数据框与字符串加在一起，数值型的放在开头，否则全都显示为NA，当然可以先将数值型数据转化为字符串
+
+
+```
