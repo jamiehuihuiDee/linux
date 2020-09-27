@@ -225,6 +225,47 @@ names（data） 读取行名
  - 函数中使用函数，一般apply类型较多
  blank[-which(apply(blank, 1, function(x) all(is.na(x)))),]
 
+- 自写函数
+-- 参数名字尽量不要有下划线， 选择项参数用大括号代替
+plot_pcoa = function(data, meta, column, metric, trefile={},treatmentTime)
+-- 参数顺序，必填项，选择默认项，前后关联的参数放在一起
+distance_minus=function(Data=dis_melt,mouse_id,var1,var1_sub,var2_sub,value="value")
+
+-- 输出用return
++ 输出多个，可以放在list
+  h <- list(data_ord,pcoa,Distance)
+  return(h)
+-- 函数问题
++ 更新函数有时候需要把函数卸载删除再重新loading
+
+-- 循环问题
++ 循环开头
+for (i in 1:(i+5))冒号后面也要加括号
++ 循环体
+for(){}
+else if (){}
+ else{} 
+ 
++ 简单循环
+otu1<- ifelse(otu1>1/10000,1,0)
++ 逻辑判断
+isTRUE(average)
+is.na(str_match(meta$label[i],"FMT"))==FALSE
+is.na(str_match(tax0[i,j],"[uU]n"))==FALSE
+
++ 循环跳出
+++ 跳出一层循环 break
+++ 跳过某个循环值 next   
+if(class(dis1)=="numeric")
+     next
+     
+     
++ 循环检查
+++ 小循环到大循环
+++ 数据代入查看
+++ 数据选择有空值，没有选上
+++ 函数参数名字改了但循环内没修改
+—++ 循环体的 if else 是否对齐了
 ```
 
 ## 数据处理
