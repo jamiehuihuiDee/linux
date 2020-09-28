@@ -429,3 +429,4 @@ reads <- sread(seqs)
  id(seqs)
  h <- data.frame(id=id(seqs),reads=sread(seqs))
 
+
