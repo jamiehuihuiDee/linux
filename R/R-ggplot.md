@@ -85,6 +85,7 @@ aes 设置参考vignette("ggplot2-specs")
 - 固定scale,nrow设置分面行数，scale=“free”用于自由调整scale
 ```
 facet_wrap(~p1$data$treatment,scale="fix",nrow=2)
+ facet_grid(.~data[,facet],scale="free")
 ```
 #### color  
 - 颜色设定最好通过scale_fill_manual 等，可以灵活的调节颜色参数，颜色在value 中设置的时候保证输入的为字符串，不能是factor
