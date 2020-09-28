@@ -74,6 +74,15 @@ ChIPseeker:::upsetplot.csAnno
 参考路径 /home/jhtang/miniconda3/envs/R/lib/R/library
 
 ```
+
+#### 文件路径与文件名操作
+```
+- 文件路径
+list.files
+- 文件名操作
+basename 提取路径最后的文件夹名字
+```
+
 #### 环境清空
 ```
  rm(list = ls(all. names = TRUE))
@@ -428,5 +437,92 @@ seqs<-  ShortRead::readFasta("rep_seqs.fasta")
 reads <- sread(seqs) 
  id(seqs)
  h <- data.frame(id=id(seqs),reads=sread(seqs))
+
+## 正则表达式字符串
+```
+可以用于某些行的选择
+- 匹配
++ 字母匹配
+++ [:alpha:]
+++ [A-Z]
+
++ *代表中括号内出现零次或多次
+str_match(colnames(newFrame),"Dag8[opt]*")
+
++ 多次匹配，+号
+str_extract(rownames(meta),"[0-9]+")
+
++   .表示除空格的所有字符，选择整个字符
+str_match(colnames(newFrame),".*Dag8[opt]*")
+
++ 匹配选行，用竖杆作为或选择，或者中括号加逗号
+res2[which(is.na(str_match(res2$id,".*Rik|Gm.*|.*-ps.*"))==TRUE),]
+str_match(colnames(trans_all),"C_[Hip,Str].*") # 两个字符串之间选择一个，[abc,cdf]，中括号代表中间的任何一个符合要求都可以
+
++ 小括号包含需要完整匹配的字符串
+str_split(colnames(pathway1),"(\\.R1)?_")
+
++ 选择第几个到几个字母
+substr((meta$treatment[1]),1,1)
+
++ "^>"表示开头是>的字符串，如果放在[]里面，表示开头不是>的字符串
+grep(pattern="^>[A-Z]",x=FF,value=TRUE)   # value输出值
++ $ 匹配末尾 
++ 匹配特殊符号，反斜杠
+grep('\\[',h3$V2)
+
+
+- 分割
++ 确保分割后有四个
+str_split(tax0[1:nrow(tax0),col],"_",n=4，simplify=TRUE)
+
++ "[" 分离，特殊符号
+sapply(str_split(colnames(otu[i]),'_'),'[',2)
+
++ 切割后多部份组合
+paste(paste(strsplit(x, " ")[[1]][1:min(length(strsplit(x," ")[[1]]), n_word)],
+                           collapse=" "), "...", sep="")
+                           
++ 分割单词为字母
+ strsplit(filt_seq,""）
+
++ paste 拼接字符
+++ 公式的制作可以用collapse，用于array里面的合并，sep用于array之间的合并
+ paste("y ~ ",paste(selected,collapse="+"),"+", unselected[i], sep="")) ,# selected里面字符通过collapse设定分离的符号，用于公式输入
+
+
++ 换行操作
+cat("asdb\nsadf ")
+
+
+```
+
+### 数据保存
+```
+- list类型数据保存为.RData
+save(trainingSet,file="traingingSet.RData")
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
