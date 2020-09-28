@@ -332,7 +332,7 @@ dcast(asv[,c(1,4,5)],id ~ batch,value.var = "zero")
 pcoaPoint <- merge(pcoa_point,meta1,by = "row.names")
 + 两个数据框用不同的列名合并
 annotation_col1 <- merge(annotation_col,h,by.x = "row.names",by.y = "Rowname")
-+ 多个dataframe合并，生成一个list再处理
++ 多个数据框合并，生成一个list再处理
 ls_df <- list(data.frame(a = 1:10, b = 1:10),
               data.frame(a = 5:14, c = 11:20),
               data.frame(a = sample(20, 10), d = runif(10)))
