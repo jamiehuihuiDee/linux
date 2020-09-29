@@ -446,7 +446,7 @@ reads <- sread(seqs)
 ++ [:alpha:]
 ++ [A-Z]
 
-+ *代表中括号内出现零次或多次
++ *代表中括号内出现零次或多次，可以匹配Dag8，Dag8opt
 str_match(colnames(newFrame),"Dag8[opt]*")
 
 + 多次匹配，+号
