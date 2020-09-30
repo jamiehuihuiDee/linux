@@ -177,6 +177,8 @@ factor(as.numeric(as.matrix(meta$Day)),levels=c(0,8,10,31),labels = c(0,8,8,31))
 ```
 ```
 - dataframe
+根据数据特征，有的需要转置一下，重新data.frame 
+as.data.frame(t(counts_norm1))
 
 -- 创建
 + 取消factor自动转化
