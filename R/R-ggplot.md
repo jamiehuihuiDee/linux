@@ -97,6 +97,18 @@ scale_colour_manual
 scale_fill_manual 
 scale_fill_gradient(low=hsv(1,.1,.7),high=hsv(1,1,1))
 geom_point(aes(fill =sub_data_ord[,  color],size=sub_data_ord[,size]),color="black",shape =  21) ## color for boarder
+
+# 多个point统一颜色，如果绘制的data变少了，导致统一变量下面的值不同，不需要重复设置aes里面的color
+ pcoa_plot_size(data_ord,pcoa,metric=metric,title_name = "PCoA--kraken",size="timeFMT",
+                  color = "donor2acceptor",shape = "donor2acceptor",shape_sub = c(21,22),
+                  text="timeFMT")+ 
+  scale_fill_manual(values = color_db[c("OO","YO","O2","OD","YD"),"value"])+
+  scale_color_manual(values = color_db[c("OO","YO","O2","OD","YD"),"value"]) +
+  scale_size_continuous(range=c(5,12),breaks = c(0,56),labels = c(0,56)) +
+geom_point(data=subset(data_ord1,donor2acceptor %in% c("OD","YD")),  ## data_ord1 就是从data_ord里面选出来的一个子集，不能设置欣的color属性
+                 aes(x=pc1,y=pc2,shape=donor2acceptor),
+                 stroke=3,size=10)+ scale_shape_manual(values = c(4,3,2) ) 
+
 ```
 - scale 只能设置一次，所以如果多个图层使用不同的颜色需要用不同形状，对应不同scale，空心的用fill调整gradient颜色，实心的用color调整,shape=16 为实心
 ```{r}
