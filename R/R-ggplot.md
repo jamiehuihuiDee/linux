@@ -200,7 +200,23 @@ ggplot(meta1,aes(x=timeFMT,y=observed,group=donor2acceptor))+
   
   
   ```
-  
+  ### 热图
+```
+   Anno = data.frame(row_anno=factor(meta1$mix)) ## rownames should be the same as counts data
+    rownames(Anno)=rownames(meta1)
+    row_colors=row_colors
+    names(row_colors)=levels(Anno$row_anno) 
+    ann_colors=list(row_anno=row_colors) ## names of colors should the same as Anno, like row_anno
+
+
+ pheatmap::pheatmap(as.matrix(na.omit(t(counts))),   ## 展示的数据需要是矩阵
+color = colorRampPalette(c("green", "black", "red"))(50),  # 热图颜色，低中高
+                       cluster_cols = FALSE,  cluster_rows = TRUE, # 横纵聚类
+                       scale = “row",angle_col=0,main = title_name, # 按照行或列归一化
+                       fontsize_col = 20,gaps_col = gaps_col,  # 列按照一定格子距离切割
+                       annotation_col = Anno,annotation_colors = ann_colors, # col维度标签，
+                       display_numbers = TRUE)    # 格子显示数值，可以用相关系数计算如corrplot
+```
   
   
   
