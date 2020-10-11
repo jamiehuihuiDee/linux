@@ -43,7 +43,7 @@ BiocManager::install("ballgown", update = TRUE, ask = FALSE)
 
 - R包信息
 man文件用来生成R执行的Rd文件
-src文件 里面有基于C++的函数，再R中不可见
+src文件 里面有基于C++的函数，在R中不可见
 
 
 ```
